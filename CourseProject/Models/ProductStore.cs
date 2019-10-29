@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace CourseProject.Models
@@ -43,6 +44,11 @@ namespace CourseProject.Models
         public void Work()
         {
             throw new NotImplementedException();
+        }
+
+        public void OnFirstEvent(System.Windows.Forms.TextBox textBox)
+        {
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "working with " + this.Name + "\r" + "\n"; });
         }
 
 

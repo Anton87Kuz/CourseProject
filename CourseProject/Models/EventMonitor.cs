@@ -20,16 +20,23 @@ namespace CourseProject.Models
         public Factory factory;
         public EventGenerator generator;
 
-        public EventMonitor()
+        public EventMonitor(System.Windows.Forms.TextBox textbox)
         {
             bank = new BankAccount();
             store = new ProductStore();
             factory = new Factory();
-            generator = new EventGenerator();
+            generator = new EventGenerator(textbox);
 
             store = (ProductStore) LoadData(storePath, store.GetType());
             bank = (BankAccount) LoadData(bankPath, bank.GetType());
-            factory = (Factory) LoadData(storePath, factory.GetType());
+            factory = (Factory) LoadData(factoryPath, factory.GetType());
+
+            generator.FirstEvent += store.OnFirstEvent;
+        }
+
+        private void Generator_FirstEvent(System.Windows.Forms.TextBox textBox)
+        {
+            throw new NotImplementedException();
         }
 
         public object LoadData(string filename, Type T)
@@ -39,6 +46,11 @@ namespace CourseProject.Models
             {
                 return xmlSer.Deserialize(fs);
             }
+        }
+
+        public void Start()
+        {
+            generator.Start();
         }
 
         public string Show()
@@ -58,6 +70,7 @@ namespace CourseProject.Models
             store.Save(storePath);
             bank.Save(bankPath);
             factory.Save(factoryPath);
+            generator.Dispose();
         }
 
     }

@@ -45,8 +45,6 @@ namespace CourseProject.Models
 
         public void Save(string filename)
         {
-            OperationalAcc = new Account { AccId = 1212324, Summa = 10000000 };
-            PrivateAcc = new Account { AccId = 2324241, Summa = 1000000 };
             XmlSerializer xmlSer = new XmlSerializer(typeof(BankAccount));
             using (FileStream fs = new FileStream(filename, FileMode.Create))
             {

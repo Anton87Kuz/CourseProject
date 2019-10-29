@@ -15,7 +15,7 @@ namespace CourseProject.Models
         public string Name { get; set; }
         public List<Product> products { get; set; }
 
-        public Thread Working;
+        //public Thread Working;
 
         public Factory()
         { }
@@ -32,9 +32,9 @@ namespace CourseProject.Models
 
         public void Save(string filename)
         {
-            Name = "Factory";
-            products = new List<Product>();
-            products.Add(new Product { ID = 212134, Name = "Fproduct_1", Price = 10, Quantity = 1000 });
+            //Name = "Factory";
+            //products = new List<Product>();
+            //products.Add(new Product { ID = 212134, Name = "Fproduct_1", Price = 10, Quantity = 1000 });
             XmlSerializer xmlSer = new XmlSerializer(typeof(Factory));
             using (FileStream fs = new FileStream(filename, FileMode.Create))
             {
