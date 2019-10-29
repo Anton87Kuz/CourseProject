@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<BankAccount xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <BankID>B4100561ID</BankID>
+  <OperationalAcc>
+    <AccId>1212324</AccId>
+    <Summa>10000000</Summa>
+  </OperationalAcc>
+  <PrivateAcc>
+    <AccId>2324241</AccId>
+    <Summa>1000000</Summa>
+  </PrivateAcc>
+</BankAccount>

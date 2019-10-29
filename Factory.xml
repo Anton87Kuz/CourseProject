@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<Factory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Factory</Name>
+  <products>
+    <Product>
+      <ID>212134</ID>
+      <Name>Fproduct_1</Name>
+      <Quantity>1000</Quantity>
+      <Price>10</Price>
+    </Product>
+  </products>
+</Factory>
