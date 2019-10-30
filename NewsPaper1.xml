@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<NewsPaper xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>NewsPaperFactory_1</Name>
+  <products>
+    <Product>
+      <ID>1</ID>
+      <Name>NewsPaper_1</Name>
+      <Quantity>100</Quantity>
+      <Price>10</Price>
+    </Product>
+    <Product>
+      <ID>2</ID>
+      <Name>Magazine_1</Name>
+      <Quantity>100</Quantity>
+      <Price>15</Price>
+    </Product>
+  </products>
+</NewsPaper>

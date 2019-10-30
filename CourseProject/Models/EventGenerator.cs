@@ -9,18 +9,25 @@ namespace CourseProject.Models
 {
     public class EventGenerator
     {
+        // delegate type of events
         public delegate void GeneralEvent(System.Windows.Forms.TextBox textBox);
 
+        //generated events
         public event GeneralEvent FirstEvent;
         public event GeneralEvent SecondEvent;
         public event GeneralEvent ThirdEvent;
         public event GeneralEvent FourthEvent;
 
+        //textbox from main form where displayed events
         System.Windows.Forms.TextBox textBox;
+
+        //random value for generating events
         Random rnd;
         
+        //true if stop button on main form was press on
         public bool IsClicked;
 
+        
         public EventGenerator(System.Windows.Forms.TextBox textbox)
         {
             rnd = new Random();
@@ -28,46 +35,39 @@ namespace CourseProject.Models
             IsClicked = false;
         }
 
+        //generate events asyncronously with random delay
         public async void Working()
         {
 
             while (!IsClicked)
             {
-                await Task.Delay(rnd.Next(1, 5) * 10);
+                await Task.Delay(rnd.Next(1, 5) * 100);
                 switch (rnd.Next(1, 4))
                 {
-                    case 1: { FirstEvent?.Invoke(textBox); break; }
+                    case 1: { FirstEvent?.Invoke(textBox);   break; }
                     case 2: { SecondEvent?.Invoke(textBox);  break; }
-                    // case 3: { ThirdEvent?.Invoke(textBox);   break; }
-                    //case 4: { FourthEvent?.Invoke(textBox);  break; }
+                    case 3: { ThirdEvent?.Invoke(textBox);   break; }
+                    case 4: { FourthEvent?.Invoke(textBox);  break; }
                     default: break;
                 }
             } 
         }
 
+        /// <summary>
+        /// Starts task that async generate events
+        /// </summary>
         public void Start()
         {
-            
             Task.Factory.StartNew(Working);
-
         }
 
-        //public void FirstEvent(System.Windows.Forms.TextBox textBox)
-        //{ }
-
-        //public void SecondEvent(System.Windows.Forms.TextBox textBox)
-        //{ }
-
-        //public void ThirdEvent(System.Windows.Forms.TextBox textBox)
-        //{ }
-
-        //public void FourthEvent(System.Windows.Forms.TextBox textBox)
-        //{ }
-
+        /// <summary>
+        /// Stops async generating method and ends task 
+        /// </summary>
         public void Dispose()
         {
             IsClicked = true;
-            Task.WaitAll();
+            //Task.WaitAll();
         }
 
     }

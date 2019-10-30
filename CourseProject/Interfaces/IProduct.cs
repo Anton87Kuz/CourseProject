@@ -17,5 +17,7 @@ namespace CourseProject.Interfaces
         int Price { get; set; }
 
         int SellProduct(int amount);
+
+        void AddProduct(int amount);
     }
 }

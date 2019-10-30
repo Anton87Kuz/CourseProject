@@ -10,13 +10,17 @@ using System.Xml.Serialization;
 
 namespace CourseProject.Models
 {
-    public class Airport : IFactory
+    public class NewsPaper : IFactory
     {
         public string Name { get; set; }
         public List<Product> products { get; set; }
 
         //reference on bank account for providing operations with finance
         private Account Account { get; set; }
+
+        //need for serialization
+        public NewsPaper()
+        { }
 
         //setting bank account
         public void GetBankAccount(Account account)
@@ -56,7 +60,7 @@ namespace CourseProject.Models
 
         public void Save(string filename)
         {
-            XmlSerializer xmlSer = new XmlSerializer(typeof(Airport));
+            XmlSerializer xmlSer = new XmlSerializer(typeof(NewsPaper));
             using (FileStream fs = new FileStream(filename, FileMode.Create))
             {
                 xmlSer.Serialize(fs, this);

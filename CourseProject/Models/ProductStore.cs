@@ -13,42 +13,61 @@ namespace CourseProject.Models
 {
     public class ProductStore:IFactory
     {
+        //name of product store
         public string Name { get; set; }
-
+        
+        //contains list of products the store selling is
         public List<Product> products { get;  set; }
 
-        
+        //reference on bank account for providing operations with finance
+        private Account Account { get; set; }
 
-        //public Thread Working { get; }
-
+        //need for serialization
         public ProductStore()
+        { }
+
+        //setting bank account
+        public void GetBankAccount(Account account)
         {
-           
+            Account = account;
         }
 
         public void Start()
         {
-           // Working.Start();
+           
         }
 
-        public void GetCash(IBankAccount bank, int sum)
+        public void GetCash(int sum)
         {
-            bank.GetMoney(sum);
+            //bank.GetMoney(sum);
         }
 
-        public void PutCash(IBankAccount bank, int sum)
+        public void PutCash(int sum)
         {
-            bank.SetMoney(sum);
+            //bank.SetMoney(sum);
         }
 
-        public void Work()
+        public string Work()
         {
-            throw new NotImplementedException();
+            return "Working";
         }
 
-        public void OnFirstEvent(System.Windows.Forms.TextBox textBox)
+        public void OnFirstEvent(TextBox textBox)
         {
-            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "working with " + this.Name + "\r" + "\n"; });
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "First event with " + Name + Work()+"\r" + "\n"; });
+        }
+
+        public void OnSecondEvent(TextBox textBox)
+        {
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Second event with " + Name + "\r" + "\n"; });
+        }
+        public void OnThirdEvent(TextBox textBox)
+        {
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Third event with " + Name + "\r" + "\n"; });
+        }
+        public void OnFourthEvent(TextBox textBox)
+        {
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Fourth event with " + Name + "\r" + "\n"; });
         }
 
 

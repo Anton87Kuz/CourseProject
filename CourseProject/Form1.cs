@@ -30,16 +30,13 @@ namespace CourseProject
         
         private async void button1_Click(object sender, EventArgs e)
         {
-            await Task.Delay(100);
-            eventMonitor.generator.IsClicked = false;
+            await Task.Delay(50);
             eventMonitor.Start();
-            // eventMonitor.
-            //textBox1.Text = eventMonitor.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            eventMonitor.generator.IsClicked = true;
+            eventMonitor.Stop();
         }
 
         private void Form1_Load(object sender, EventArgs e)

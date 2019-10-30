@@ -9,16 +9,22 @@ namespace CourseProject.Models
 {
     public class Product: IProduct
     {
+        //unique id of product
         public int ID { get;  set; }
 
+        //product name
         public string Name { get; set; }
 
+        //current amount of product
         public int Quantity { get; set; }
 
+        //price per unit of product
         public int Price { get;  set; }
 
         
-
+        /// <summary>
+        /// need for serialization
+        /// </summary>
         public Product()
         {
             
@@ -34,5 +40,11 @@ namespace CourseProject.Models
         if ((Quantity - amount) >= 0) { Quantity -= amount; return amount * Price; }
             else { return -1; }
         }
+
+        public void AddProduct(int amount)
+        {
+            Quantity += amount;
+        }
     }
+
 }

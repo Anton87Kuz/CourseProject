@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace CourseProject.Models
@@ -15,10 +16,17 @@ namespace CourseProject.Models
         public string Name { get; set; }
         public List<Product> products { get; set; }
 
-        //public Thread Working;
+        //reference on bank account for providing operations with finance
+        private Account Account { get; set; }
 
         public Factory()
         { }
+
+        //setting bank account
+        public void GetBankAccount(Account account)
+        {
+            Account = account;
+        }
 
         public void GetCash(IBankAccount bank, int sum)
         {
@@ -48,6 +56,26 @@ namespace CourseProject.Models
         }
 
         public void Work()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnFirstEvent(TextBox textBox)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnSecondEvent(TextBox textBox)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnThirdEvent(TextBox textBox)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnFourthEvent(TextBox textBox)
         {
             throw new NotImplementedException();
         }

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<Airport xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Name>Airport1</Name>
+  <products>
+    <Product>
+      <ID>1</ID>
+      <Name>A1_Plane_1</Name>
+      <Quantity>1</Quantity>
+      <Price>1000000</Price>
+    </Product>
+    <Product>
+      <ID>2</ID>
+      <Name>A1_Plane_2</Name>
+      <Quantity>5</Quantity>
+      <Price>100000</Price>
+    </Product>
+  </products>
+</Airport>

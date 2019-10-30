@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace CourseProject.Interfaces
 {
@@ -14,15 +15,17 @@ namespace CourseProject.Interfaces
 
         List<Product> products { get; set; }
 
-        //Thread Working { get; }
+        //Account account { get; set; }
 
-        void Start();
+        void GetBankAccount(Account account);
+       
+        void OnFirstEvent(TextBox textBox);
 
-        void Work();
+        void OnSecondEvent(TextBox textBox);
 
-        void GetCash(IBankAccount bank, int sum);
+        void OnThirdEvent(TextBox textBox);
 
-        void PutCash(IBankAccount bank, int sum);
+        void OnFourthEvent(TextBox textBox);
 
         void Save(string filename);
 

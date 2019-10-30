@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <ProductStore xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Name>Product Store</Name>
+  <Name>Product_Store_1</Name>
   <products>
     <Product>
-      <ID>1111111</ID>
-      <Name>Product_1</Name>
+      <ID>1</ID>
+      <Name>PS1_Product_1</Name>
       <Quantity>1000</Quantity>
       <Price>10</Price>
     </Product>
     <Product>
-      <ID>1111112</ID>
-      <Name>Product_2</Name>
+      <ID>2</ID>
+      <Name>PS1_Product_2</Name>
       <Quantity>1000</Quantity>
       <Price>14</Price>
     </Product>
     <Product>
-      <ID>1111114</ID>
-      <Name>Product_3</Name>
+      <ID>3</ID>
+      <Name>PS1_Product_3</Name>
       <Quantity>1000</Quantity>
       <Price>8</Price>
     </Product>
