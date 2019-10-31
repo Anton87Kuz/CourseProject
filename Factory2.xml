@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <Factory xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <Name>Factory</Name>
+  <Name>Factory_2</Name>
   <products>
     <Product>
       <ID>212134</ID>

@@ -1,4 +1,6 @@
-﻿namespace CourseProject
+﻿using CourseProject.Models;
+
+namespace CourseProject
 {
     partial class Form1
     {
@@ -113,6 +115,10 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
+            //
+            //event monitor
+            //
+            this.eventMonitor = new EventMonitor(textBox1,button1);
 
         }
 
@@ -124,6 +130,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private EventMonitor eventMonitor;
     }
 }
 

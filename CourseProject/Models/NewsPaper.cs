@@ -33,24 +33,35 @@ namespace CourseProject.Models
             throw new NotImplementedException();
         }
 
-        public void OnFirstEvent(TextBox textBox)
+        public void OnStart(TextBox textBox)
         {
-            throw new NotImplementedException();
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Start working " + Name + "\r" + "\n"; });
         }
 
+        public void OnStop(TextBox textBox)
+        {
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Stop working " + Name + "\r" + "\n"; });
+            //button1.Invoke((MethodInvoker)delegate { button1.Enabled = false; });
+            
+        }
+
+        public void OnFirstEvent(TextBox textBox)
+        {
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "First event with " + Name + Work()  + "\r" + "\n"; });
+        }
         public void OnFourthEvent(TextBox textBox)
         {
-            throw new NotImplementedException();
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "4t event with " + Name + Work() + "\r" + "\n"; });
         }
 
         public void OnSecondEvent(TextBox textBox)
         {
-            throw new NotImplementedException();
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "F2 event with " + Name + Work()  + "\r" + "\n"; });
         }
 
         public void OnThirdEvent(TextBox textBox)
         {
-            throw new NotImplementedException();
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "3 event with " + Name + Work() + "\r" + "\n"; });
         }
 
         public void PutCash(IBankAccount bank, int sum)
@@ -72,9 +83,9 @@ namespace CourseProject.Models
             throw new NotImplementedException();
         }
 
-        public void Work()
+        public string Work()
         {
-            throw new NotImplementedException();
+            return "working";
         }
     }
 }

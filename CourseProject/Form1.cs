@@ -16,27 +16,32 @@ namespace CourseProject
         
 
 
-        EventMonitor eventMonitor;
-        bool Stop = false;
+        //EventMonitor eventMonitor;
+        
 
         public Form1()
         {
             InitializeComponent();
-            eventMonitor = new EventMonitor(textBox1);
+            
             
 
         }
 
         
-        private async void button1_Click(object sender, EventArgs e)
+        private  void button1_Click(object sender, EventArgs e)
         {
-            await Task.Delay(50);
+            
             eventMonitor.Start();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
+
+            button1.Enabled = false;
+            
             eventMonitor.Stop();
+            
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)

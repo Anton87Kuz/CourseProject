@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace CourseProject.Models
@@ -15,12 +16,12 @@ namespace CourseProject.Models
     public class EventMonitor:IDisposable
     {
         //contains paths to xml-files where saved all producable factories of the owner
-        private List<string> paths = new List<string>(6)
+        private List<string> paths = new List<string>(5)
         { 
           "C:/Users/kuzan/Desktop/C# Projects/CourseProject/ProductStore1.xml", 
           "C:/Users/kuzan/Desktop/C# Projects/CourseProject/Factory1.xml",
-          "C:/Users/kuzan/Desktop/C# Projects/CourseProject/Factory2.xml",
           "C:/Users/kuzan/Desktop/C# Projects/CourseProject/Airport1.xml",
+          "C:/Users/kuzan/Desktop/C# Projects/CourseProject/Factory2.xml",
           "C:/Users/kuzan/Desktop/C# Projects/CourseProject/NewsPaper1.xml",
         };
         //contains path to the bank of the owner
@@ -34,13 +35,19 @@ namespace CourseProject.Models
         //instance of the bank of the owner
         private BankAccount bank;
 
+        private Button StartButton;
 
-        public EventMonitor(System.Windows.Forms.TextBox textbox)
+        
+
+        public EventMonitor(TextBox textbox, Button button1)
         {
+            
             factories = new List<IFactory>();
             generators = new List<EventGenerator>();
             bank = new BankAccount();
             types = new List<Type>() { typeof(ProductStore), typeof(Factory), typeof(Airport), typeof(NewsPaper)};
+
+            StartButton = button1;
             
             //loading bank from corresponding file
             bank = (BankAccount)LoadData(bankPath, bank.GetType());
@@ -58,35 +65,15 @@ namespace CourseProject.Models
                 }
             }
 
-            //foreach (string item in paths)
-            //{
-            //    if (item.Contains("ProductStore")) 
-            //    { 
-            //        factories.Add((ProductStore)LoadData(item, typeof(ProductStore)));
-            //        generators.Add(new EventGenerator(textbox));
-            //    }
-            //    if (item.Contains("Factory")) 
-            //    { 
-            //        factories.Add((Factory)LoadData(item, typeof(Factory)));
-            //        generators.Add(new EventGenerator(textbox));
-            //    }
-            //    if (item.Contains("Airport")) 
-            //    { 
-            //        factories.Add((Airport)LoadData(item, typeof(Airport)));
-            //        generators.Add(new EventGenerator(textbox));
-            //    }
-            //    if (item.Contains("NewsPaper")) 
-            //    { 
-            //        factories.Add((NewsPaper)LoadData(item, typeof(NewsPaper)));
-            //        generators.Add(new EventGenerator(textbox));
-            //    }
-            //}
+            
             
             //subscribing on events and addng bank acount for finance operations
             foreach (EventGenerator item in generators)
             {
                 factories[generators.IndexOf(item)].GetBankAccount(bank.OperationalAcc);
-
+               
+                item.StopWork+= factories[generators.IndexOf(item)].OnStop;
+                item.StartWork += factories[generators.IndexOf(item)].OnStart;
                 item.FirstEvent += factories[generators.IndexOf(item)].OnFirstEvent;
                 item.SecondEvent += factories[generators.IndexOf(item)].OnSecondEvent;
                 item.ThirdEvent += factories[generators.IndexOf(item)].OnThirdEvent;
@@ -115,17 +102,34 @@ namespace CourseProject.Models
         /// </summary>
         public void Start()
         {
-            generators[0].IsClicked=false;
-            generators[0].Start();
+            foreach (EventGenerator item in generators)
+            {
+                item.IsClicked = false;
+                item.Start();
+            }
+                                 
         }
 
         /// <summary>
         /// Stops events generators
         /// </summary>
-        public void Stop()
+        public async void Stop()
         {
-            generators[0].IsClicked = true;
+            int n=0;
+            do
+            {
+                n = 0;
+                foreach (EventGenerator item in generators)
+                {
+                    item.IsClicked = true;
+                    if (item.StopCalled) { n++; } else { continue; }
+                }
+                await Task.Delay(300);
+            }
+            while (n != generators.Count);
+            StartButton.Invoke((MethodInvoker)delegate { StartButton.Enabled = true; });
         }
+
 
         /// <summary>
         /// Stoprs all tasks and save all current data of factories to xml files

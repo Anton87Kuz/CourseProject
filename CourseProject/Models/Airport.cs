@@ -29,24 +29,35 @@ namespace CourseProject.Models
             throw new NotImplementedException();
         }
 
+        public void OnStart(TextBox textBox)
+        {
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Start working " + Name + "\r" + "\n"; });
+        }
+
+        public void OnStop(TextBox textBox)
+        {
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Stop working " + Name + "\r" + "\n"; });
+                      
+        }
+
         public void OnFirstEvent(TextBox textBox)
         {
-            throw new NotImplementedException();
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "First event with " + Name + Work() + "\r" + "\n"; });
         }
 
         public void OnFourthEvent(TextBox textBox)
         {
-            throw new NotImplementedException();
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "4 event with " + Name + Work() + "\r" + "\n"; });
         }
 
         public void OnSecondEvent(TextBox textBox)
         {
-            throw new NotImplementedException();
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "2 event with " + Name + Work() + "\r" + "\n"; });
         }
 
         public void OnThirdEvent(TextBox textBox)
         {
-            throw new NotImplementedException();
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "third event with " + Name + Work() +  "\r" + "\n"; });
         }
 
         public void PutCash(IBankAccount bank, int sum)
@@ -68,9 +79,9 @@ namespace CourseProject.Models
             throw new NotImplementedException();
         }
 
-        public void Work()
+        public string Work()
         {
-            throw new NotImplementedException();
+            return "working ";
         }
     }
 }

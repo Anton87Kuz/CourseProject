@@ -36,38 +36,41 @@ namespace CourseProject.Models
         {
            
         }
-
-        public void GetCash(int sum)
-        {
-            //bank.GetMoney(sum);
-        }
-
-        public void PutCash(int sum)
-        {
-            //bank.SetMoney(sum);
-        }
+              
 
         public string Work()
         {
-            return "Working";
+            return "Working ";
+        }
+
+        public void OnStart(TextBox textBox)
+        {
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Start working " + Name + "\r" + "\n"; });
+        }
+
+        public  void OnStop(TextBox textBox)
+        {
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Stop working " + Name + "\r" + "\n"; });
+           
+            
         }
 
         public void OnFirstEvent(TextBox textBox)
         {
-            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "First event with " + Name + Work()+"\r" + "\n"; });
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "First event with " + Name +"\r" + "\n"; });
         }
 
         public void OnSecondEvent(TextBox textBox)
         {
-            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Second event with " + Name + "\r" + "\n"; });
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Second event with " + Name  + "\r" + "\n"; });
         }
         public void OnThirdEvent(TextBox textBox)
         {
-            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Third event with " + Name + "\r" + "\n"; });
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Third event with " + Name  + "\r" + "\n"; });
         }
         public void OnFourthEvent(TextBox textBox)
         {
-            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Fourth event with " + Name + "\r" + "\n"; });
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Fourth event with " + Name  + "\r" + "\n"; });
         }
 
 

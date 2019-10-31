@@ -40,9 +40,6 @@ namespace CourseProject.Models
 
         public void Save(string filename)
         {
-            //Name = "Factory";
-            //products = new List<Product>();
-            //products.Add(new Product { ID = 212134, Name = "Fproduct_1", Price = 10, Quantity = 1000 });
             XmlSerializer xmlSer = new XmlSerializer(typeof(Factory));
             using (FileStream fs = new FileStream(filename, FileMode.Create))
             {
@@ -55,29 +52,40 @@ namespace CourseProject.Models
             throw new NotImplementedException();
         }
 
-        public void Work()
+        public string Work()
         {
-            throw new NotImplementedException();
+            return "working";
+        }
+
+        public void OnStart(TextBox textBox)
+        {
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Start working " + Name + "\r" + "\n"; });
+        }
+
+        public void OnStop(TextBox textBox)
+        {
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "Stop working " + Name + "\r" + "\n"; });
+                      
         }
 
         public void OnFirstEvent(TextBox textBox)
         {
-            throw new NotImplementedException();
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "First event with " + Name + Work() + "\r" + "\n"; });
         }
 
         public void OnSecondEvent(TextBox textBox)
         {
-            throw new NotImplementedException();
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "second event with " + Name + Work()  + "\r" + "\n"; });
         }
 
         public void OnThirdEvent(TextBox textBox)
         {
-            throw new NotImplementedException();
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "third event with " + Name + Work()  + "\r" + "\n"; });
         }
 
         public void OnFourthEvent(TextBox textBox)
         {
-            throw new NotImplementedException();
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "fourth event with " + Name + Work()  + "\r" + "\n"; });
         }
     }
 }

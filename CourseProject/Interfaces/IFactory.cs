@@ -18,7 +18,11 @@ namespace CourseProject.Interfaces
         //Account account { get; set; }
 
         void GetBankAccount(Account account);
-       
+
+        void OnStart(TextBox textBox);
+        
+        void OnStop(TextBox textBox);
+        
         void OnFirstEvent(TextBox textBox);
 
         void OnSecondEvent(TextBox textBox);
