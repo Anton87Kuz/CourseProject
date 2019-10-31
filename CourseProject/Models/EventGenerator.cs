@@ -28,34 +28,31 @@ namespace CourseProject.Models
         public TextBox textBox;
        
 
-       //random value for generating events
-       Random rnd;
+        //random value for generating events
+        Random rnd;
         
         //true if stop button on main form was press on
         public bool IsClicked;
 
+        //set it true after event StopWork take place
         public bool StopCalled;
 
-       // public Task task;
-        
-
-        
-
+              
         public EventGenerator(TextBox textbox)
         {
             rnd = new Random();
             textBox = textbox;
             IsClicked = false;
             StopCalled = false;
-            
-            //task = new Task(Working);
         }
-             
 
-        //generate events asyncronously with random delay
+
+        /// <summary>
+        /// generate events asyncronously with random delay
+        /// </summary>
         public async void Working()
         {
-            int n = rnd.Next(5, 10);
+            int n = rnd.Next(5, 10);      //adding more randomness
 
             StartWork?.Invoke(textBox);
             await Task.Delay(rnd.Next(30-n, 40+n)*100);
@@ -73,11 +70,8 @@ namespace CourseProject.Models
                 }
                 await Task.Delay(rnd.Next(100-n, 100+m) * 100);
             }
-
             StopWork?.Invoke(textBox);
             StopCalled = true;
-
-
         }
 
         /// <summary>
@@ -90,12 +84,11 @@ namespace CourseProject.Models
         }
 
         /// <summary>
-        /// Stops async generating method and ends task 
+        /// Stops async generating method that ends task 
         /// </summary>
-        public  void Dispose()
+        public void Dispose()
         {
             IsClicked = true;
-                        
         }
 
     }
