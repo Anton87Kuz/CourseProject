@@ -17,7 +17,9 @@ namespace CourseProject.Models
         public List<Product> products { get; set; }
 
         //reference on bank account for providing operations with finance
-        private Account Account { get; set; }
+        private Account OperAccount { get; set; }
+
+        private Random rnd;
 
         public Factory()
         { }
@@ -25,17 +27,7 @@ namespace CourseProject.Models
         //setting bank account
         public void GetBankAccount(Account account)
         {
-            Account = account;
-        }
-
-        public void GetCash(IBankAccount bank, int sum)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void PutCash(IBankAccount bank, int sum)
-        {
-            throw new NotImplementedException();
+            OperAccount = account;
         }
 
         public void Save(string filename)
@@ -47,14 +39,70 @@ namespace CourseProject.Models
             }
         }
 
-        public void Start()
+        private async Task<string> Sell()
         {
-            throw new NotImplementedException();
+            string result = "*) ";
+            rnd = new Random();
+            int prodnum = rnd.Next(0, products.Count - 1);//number of product
+            int prodcount = rnd.Next(1, 100);// amount of products
+            products[prodnum].Quantity -= prodcount;
+            if (products[prodnum].Quantity < 0) { products[prodnum].Quantity += prodcount; return Name + " trying to sell but product \"" + products[prodnum].Name + " \" ended" + "\r" + "\n"; }
+            int profit = products[prodnum].Price * prodcount;
+            result += string.Format("\"{0}\" sell product \"{1}\" in amount {2} and get {3}$", Name, products[prodnum].Name, prodcount, profit);
+            if (await OperAccount.PutCash(profit))
+            {
+                result += " Operation succesfull" + "\r" + "\n";
+                return result;
+            }
+            else
+            {
+                result += " Bank Account locked";
+                return result + "\r" + "\n";
+            };
+            
         }
 
-        public string Work()
+        private string GetProduct()
         {
-            return "working";
+            string result = "*) ";
+            rnd = new Random();
+            int prodnum = rnd.Next(0, products.Count - 1);//number of product
+            int prodcount = rnd.Next(1, 100);// amount of products
+            products[prodnum].Quantity += prodcount;
+            result += string.Format("\"{0}\" made amount {2} of product \"{1}\" and put it to the store", Name, products[prodnum].Name, prodcount);
+            return result;
+        }
+
+        private async Task<string> BuyResources()
+        {
+            string result = "*) ";
+            rnd = new Random();
+            int prodnum = rnd.Next(0, products.Count - 1);//number of product
+            int prodcount = rnd.Next(1, 100);// amount of products
+            int amount = (products[prodnum].Price - 3) * prodcount;
+            result += string.Format("\"{0}\"  buy resources for product \"{1}\" in amount {2} and pay {3}$", Name, products[prodnum].Name, prodcount,amount);
+            if (await OperAccount.GetCash(amount))
+            {
+                result += " Operation succesfull" + "\r" + "\n";
+                return result;
+            }
+            else
+            {
+                result += " Bank Account locked";
+                return result + "\r" + "\n";
+            };
+            
+        }
+
+        private string Inventarization()
+        {
+            string result = "*) ";
+            result += "\"" + Name + "\" start inventarization:" + "\r" + "\n";
+            foreach (Product item in products)
+            {
+                result += "\"" + item.Name + "\", amount: " + item.Quantity.ToString() + "\r" + "\n";
+            }
+            return result;
         }
 
         public void OnStart(TextBox textBox)
@@ -70,22 +118,25 @@ namespace CourseProject.Models
 
         public void OnFirstEvent(TextBox textBox)
         {
-            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "First event with " + Name + Work() + "\r" + "\n"; });
+            
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += GetProduct()+ "\r" + "\n"; });
         }
 
-        public void OnSecondEvent(TextBox textBox)
+        public async void OnSecondEvent(TextBox textBox)
         {
-            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "second event with " + Name + Work()  + "\r" + "\n"; });
+            string x = await Sell();
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += x; });
         }
 
-        public void OnThirdEvent(TextBox textBox)
+        public async void OnThirdEvent(TextBox textBox)
         {
-            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "third event with " + Name + Work()  + "\r" + "\n"; });
+            string x = await BuyResources();
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text += x; });
         }
 
         public void OnFourthEvent(TextBox textBox)
         {
-            textBox.Invoke((MethodInvoker)delegate { textBox.Text += "fourth event with " + Name + Work()  + "\r" + "\n"; });
+            textBox.Invoke((MethodInvoker)delegate { textBox.Text +=  Inventarization()+ "\r" + "\n"; });
         }
     }
 }

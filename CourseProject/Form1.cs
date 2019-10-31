@@ -16,15 +16,13 @@ namespace CourseProject
         
 
 
-        //EventMonitor eventMonitor;
+        EventMonitor eventMonitor;
         
 
         public Form1()
         {
             InitializeComponent();
-            
-            
-
+            eventMonitor = new EventMonitor(textBox1, button1);
         }
 
         
@@ -53,6 +51,11 @@ namespace CourseProject
         {
             eventMonitor.Dispose();
         }
-        
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int sum = new Random().Next(1000, 10000);
+            eventMonitor.UsePrivateAccount(sum);
+        }
     }
 }

@@ -21,6 +21,7 @@ namespace CourseProject.Models
         public event GeneralEvent ThirdEvent;
         public event GeneralEvent FourthEvent;
 
+        // events on start and stop of generating
         public event GeneralEvent StartWork;
         public event GeneralEvent StopWork;
 
@@ -50,17 +51,17 @@ namespace CourseProject.Models
         /// <summary>
         /// generate events asyncronously with random delay
         /// </summary>
-        public async void Working()
+        public void Working()
         {
             int n = rnd.Next(5, 10);      //adding more randomness
 
             StartWork?.Invoke(textBox);
-            await Task.Delay(rnd.Next(30-n, 40+n)*100);
+            Thread.Sleep(rnd.Next(30-n, 40+n)*100);
 
             int m = rnd.Next(20, 50);
             while (!IsClicked)
             {
-                switch (rnd.Next(1, 4))
+                switch (rnd.Next(1,5))
                 {
                         case 1: { FirstEvent?.Invoke(textBox); break; }
                         case 2: { SecondEvent?.Invoke(textBox); break; }
@@ -68,19 +69,20 @@ namespace CourseProject.Models
                         case 4: { FourthEvent?.Invoke(textBox); break; }
                         default: break;
                 }
-                await Task.Delay(rnd.Next(100-n, 100+m) * 100);
+                Thread.Sleep(rnd.Next(100-n, 100+m) * 100);
             }
-            StopWork?.Invoke(textBox);
+            //StopWork?.Invoke(textBox);
             StopCalled = true;
         }
 
         /// <summary>
         /// Starts task that async generate events
         /// </summary>
-        public void Start()
+        public async void Start()
         {
             StopCalled = false;
-            Task.Factory.StartNew(Working);
+            await Task.Factory.StartNew(Working);
+            StopWork?.Invoke(textBox);
         }
 
         /// <summary>
@@ -89,6 +91,7 @@ namespace CourseProject.Models
         public void Dispose()
         {
             IsClicked = true;
+            
         }
 
     }

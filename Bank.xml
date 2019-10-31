@@ -3,10 +3,10 @@
   <BankID>B4100561ID</BankID>
   <OperationalAcc>
     <AccId>1212324</AccId>
-    <Summa>10000000</Summa>
+    <Summa>9902308</Summa>
   </OperationalAcc>
   <PrivateAcc>
     <AccId>2324241</AccId>
-    <Summa>1000000</Summa>
+    <Summa>913597</Summa>
   </PrivateAcc>
 </BankAccount>

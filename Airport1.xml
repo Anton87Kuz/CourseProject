@@ -11,7 +11,19 @@
     <Product>
       <ID>2</ID>
       <Name>A1_Plane_2</Name>
-      <Quantity>5</Quantity>
+      <Quantity>1</Quantity>
+      <Price>100000</Price>
+    </Product>
+    <Product>
+      <ID>3</ID>
+      <Name>A1_Plane_3</Name>
+      <Quantity>1</Quantity>
+      <Price>100000</Price>
+    </Product>
+    <Product>
+      <ID>4</ID>
+      <Name>A1_Plane_4</Name>
+      <Quantity>0</Quantity>
       <Price>100000</Price>
     </Product>
   </products>

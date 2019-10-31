@@ -36,6 +36,7 @@ namespace CourseProject.Models
         private BankAccount bank;
 
         private Button StartButton;
+        private TextBox textBox;
 
         
 
@@ -48,9 +49,11 @@ namespace CourseProject.Models
             types = new List<Type>() { typeof(ProductStore), typeof(Factory), typeof(Airport), typeof(NewsPaper)};
 
             StartButton = button1;
+            textBox = textbox;
             
             //loading bank from corresponding file
             bank = (BankAccount)LoadData(bankPath, bank.GetType());
+            bank.PrivateAcc.SetPrivacy();
 
             //loading all factories from files and creating generator of events for each of them (using reflection)
             foreach (string item in paths)
@@ -149,5 +152,12 @@ namespace CourseProject.Models
             bank.Save(bankPath);
         }
 
+        public async void UsePrivateAccount(int sum)
+        {
+            if (await bank.PrivateAcc.GetCash(sum))
+            {
+                textBox?.Invoke((MethodInvoker)delegate { textBox.Text += "Owner take " + sum + "$ from his private account"+"\r"+"\n"; });
+            }
+        }
     }
 }

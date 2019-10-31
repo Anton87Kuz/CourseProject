@@ -46,7 +46,7 @@ namespace CourseProject
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(418, 312);
+            this.textBox1.Size = new System.Drawing.Size(599, 449);
             this.textBox1.TabIndex = 0;
             // 
             // groupBox1
@@ -54,7 +54,7 @@ namespace CourseProject
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(430, 337);
+            this.groupBox1.Size = new System.Drawing.Size(611, 474);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Event Monitor";
@@ -64,9 +64,9 @@ namespace CourseProject
             this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Location = new System.Drawing.Point(455, 12);
+            this.groupBox2.Location = new System.Drawing.Point(641, 12);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(220, 337);
+            this.groupBox2.Size = new System.Drawing.Size(220, 474);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Controls";
@@ -79,6 +79,7 @@ namespace CourseProject
             this.button3.TabIndex = 2;
             this.button3.Text = "Use bank";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -104,21 +105,17 @@ namespace CourseProject
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(682, 358);
+            this.ClientSize = new System.Drawing.Size(871, 498);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
-            this.Text = "Corse Project ";
+            this.Text = "Course Project ";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
-            //
-            //event monitor
-            //
-            this.eventMonitor = new EventMonitor(textBox1,button1);
 
         }
 
@@ -130,7 +127,7 @@ namespace CourseProject
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
-        private EventMonitor eventMonitor;
+       
     }
 }
 
